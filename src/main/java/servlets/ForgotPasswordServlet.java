@@ -6,6 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import static models.User_.email;
+import services.AccountService;
 
 /**
  *
@@ -37,6 +40,19 @@ public class ForgotPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountService as = new AccountService();
+        
+        String email = request.getParameter("email");
+        String path = getServletContext().getRealPath("/WEB-INF");
+        
+        as.forgotPassword(email, path);
+        
+        HttpSession session = request.getSession();
+        String message = "“If the address you entered is valid, you will receive an email very soon. Please check your email for your password";
+        
+        session.setAttribute("message", message);
+        
+        
         getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
     }
 
