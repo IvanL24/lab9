@@ -48,7 +48,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         as.forgotPassword(email, path);
         
         HttpSession session = request.getSession();
-        String message = "“If the address you entered is valid, you will receive an email very soon. Please check your email for your password";
+        String message = "If the address you entered is valid, you will receive an email very soon. Please check your email for your password.";
         
         session.setAttribute("message", message);
         

@@ -27,7 +27,7 @@ public class AccountService {
         UserDB userdb = new UserDB();
             User user = userdb.get(email);
             String receiver = user.getEmail();
-            String subject = "Forgot Password";
+            String subject = "Notes App Login Credentials";
             String template = path + "/emailtemplates/credentials.html";
             
             HashMap<String, String> tags = new HashMap<>();
